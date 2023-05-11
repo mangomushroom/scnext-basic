@@ -1,5 +1,45 @@
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
+import { GetStaticProps } from 'next'
+import { GraphQLClient, gql } from 'graphql-request';
+
+export const getStaticProps: GetStaticProps = async () => {
+  const endpoint = process.env.PREVIEW_CH_ENDPOINT as string;
+
+  const graphQLClient = new GraphQLClient(endpoint);
+  graphQLClient.setHeader('X-GQL-Token', process.env.PREVIEW_CH_ENDPOINT as string);
+
+  const query = gql`
+    {
+      item (path: "/sitecore/templates") { 
+        id 
+        path 
+        children { 
+          name 
+        } 
+        template { 
+          fields { 
+            name 
+          } 
+        } 
+      } 
+    }
+  `;
+
+  const data = await graphQLClient.request(query);
+
+  console.log('logging graphql data and looping:')
+  console.log(data);
+
+  for(let i = 0; i < data.item.children.length; i++) {
+    let dat = data.item.children[i];
+    console.log(dat);
+  }
+
+  return {
+    props: {data}
+  };
+}
 
 const inter = Inter({ subsets: ['latin'] })
 

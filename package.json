@@ -3,10 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "set NODE_EXTRA_CA_CERTS=./sc01.sif.pem && next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
+  },
+  "nextConfig": {
+    "serverOptions": {
+      "httpsOptions": {
+        "cert": "xp0.sc.pem"
+      }
+    }
   },
   "dependencies": {
     "@types/node": "18.16.3",
@@ -15,6 +22,8 @@
     "autoprefixer": "10.4.14",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.4",
+    "graphql": "^16.6.0",
+    "graphql-request": "^6.0.0",
     "next": "13.3.4",
     "postcss": "8.4.23",
     "react": "18.2.0",
