@@ -1,0 +1,12 @@
+#
+# This should be copied to a .env.local for local development
+#
+
+# These are used for connecting to the Sitecore master graphql API
+# The PREVIEW_CH_API_KEY should be the ID of an API key from the content tree
+# The PREVIEW_CH_ENDPOINT is the URL of the graphQL endpoint
+PREVIEW_CH_API_KEY = ""
+PREVIEW_CH_ENDPOINT = "https://xp0.sc/sitecore/api/graph/items/master"
+
+# Set this to 'true' if you want to use mock data from 
+MOCK_GRAPGQL = 'Xtrue'
